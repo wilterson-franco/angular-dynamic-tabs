@@ -22,9 +22,7 @@ export class TabContentComponent implements OnInit {
 
   ngOnInit() {
     const tab: Tab = this.tab;
-    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(
-      tab.component
-    );
+    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(tab.component);
     const viewContainerRef = this.contentContainer.viewContainerRef;
     const componentRef = viewContainerRef.createComponent(componentFactory);
     (componentRef.instance as SkeletonComponent).data = tab.tabData;

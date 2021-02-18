@@ -3,12 +3,13 @@ import { Tab } from "./tab.model";
 import { Comp1Component } from "./components/comp1.component";
 import { Comp2Component } from "./components/comp2.component";
 import { BehaviorSubject } from "rxjs";
+import {Locale} from "./module/locale";
 
 @Injectable()
 export class TabService {
+
   public tabs: Tab[] = [
-    new Tab(Comp1Component, "Comp1 View", { parent: "AppComponent" }),
-    new Tab(Comp2Component, "Comp2 View", { parent: "AppComponent" })
+    new Tab(Comp1Component, "English", new Locale('English', true, 'Merchant description in English', true))
   ];
 
   public tabSub = new BehaviorSubject<Tab[]>(this.tabs);

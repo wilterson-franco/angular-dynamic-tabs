@@ -8,8 +8,8 @@ export class Tab {
   public component: Type<any>;
 
   constructor(component: Type<any>, title: string, tabData: any) {
-    this.tabData = tabData;
     this.component = component;
     this.title = title;
+    this.tabData = tabData;
   }
 }
