@@ -1,10 +1,10 @@
-import { Component, OnInit } from "@angular/core";
-import { TabService } from "./tab.service";
-import { Tab } from "./tab.model";
-import { Comp1Component } from "./components/comp1.component";
+import {Component, OnInit} from "@angular/core";
+import {TabService} from "./tab.service";
+import {Tab} from "./model/tab.model";
 import {MatDialog} from "@angular/material/dialog";
 import {NewLocationDialogComponent} from "./components/new-location-dialog/new-location-dialog.component";
-import {Locale} from "./module/locale";
+import {Locale} from "./model/locale";
+import {LocaleComponent} from "./components/locale/locale.component";
 
 @Component({
   selector: "app-root",
@@ -15,7 +15,8 @@ export class AppComponent implements OnInit {
   tabs = new Array<Tab>();
   selectedTab: number;
 
-  constructor(private tabService: TabService, private dialog: MatDialog) {}
+  constructor(private tabService: TabService, private dialog: MatDialog) {
+  }
 
   ngOnInit() {
     this.tabService.tabSub.subscribe(tabs => {
@@ -30,13 +31,13 @@ export class AppComponent implements OnInit {
 
   addNewTab() {
     let dialogRef = this.dialog.open(NewLocationDialogComponent, {
-      width: '450px'
+      width: '500px'
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result !== null && result !== undefined) {
-        const newLocale = new Locale(result.language, false, 'please enter merchant\'s description in the selected language', true);
-        this.tabService.addTab(new Tab(Comp1Component, newLocale.language, newLocale));
+    dialogRef.afterClosed().subscribe((locale: Locale) => {
+      if (locale !== null && locale !== undefined) {
+        const newLocale = new Locale(locale.language, locale.defaultLocale, locale.description, true);
+        this.tabService.addTab(new Tab(LocaleComponent, newLocale.language, newLocale));
       }
     })
   }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialogRef} from "@angular/material/dialog";
-import {Locale} from "../../module/locale";
+import {Locale} from "../../model/locale";
 
 @Component({
   selector: 'app-new-location-dialog',
@@ -16,7 +16,7 @@ export class NewLocationDialogComponent implements OnInit {
   constructor(private dialogRef: MatDialogRef<NewLocationDialogComponent>) { }
 
   ngOnInit() {
-    this.locale = new Locale('Portuguese', false, 'merchant description in Portuguese', false);
+    this.locale = new Locale('Portuguese', false, null, false);
   }
 
   save() {

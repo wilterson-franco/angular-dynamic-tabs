@@ -6,8 +6,8 @@ import {
   OnInit
 } from "@angular/core";
 import { ContentContainerDirective } from "./content-container.directive";
-import { SkeletonComponent } from "./skeleton.component";
-import { Tab } from "./tab.model";
+import { SkeletonComponent } from "./model/skeleton.component";
+import { Tab } from "./model/tab.model";
 
 @Component({
   selector: "app-tab-content",

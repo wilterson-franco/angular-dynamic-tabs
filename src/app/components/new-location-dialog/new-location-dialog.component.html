@@ -7,6 +7,11 @@
         <mat-option *ngFor="let language of languages" [value]="language">{{ language }}</mat-option>
       </mat-select>
     </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>{{ locale.language }} description</mat-label>
+      <textarea matInput [(ngModel)]="locale.description"></textarea>
+    </mat-form-field>
+    <mat-checkbox [(ngModel)]="locale.defaultLocale">is {{locale.language}} the default locale?</mat-checkbox>
   </div>
 </mat-dialog-content>
 

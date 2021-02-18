@@ -1,6 +1,6 @@
 <div class="container-fluid">
-  <h1>Tab Demo Application</h1>
-  <button mat-stroked-button (click)="addNewTab()">Add new tab</button>
+  <h1>Demo Application</h1>
+  <button mat-stroked-button (click)="addNewTab()">Add new locale <mat-icon>language</mat-icon></button>
 
   <mat-tab-group
     class="main-tab-group mt-2"
@@ -8,13 +8,9 @@
     (selectedTabChange)="tabChanged($event)">
 
     <mat-tab *ngFor="let tab of tabs; let tabIndex = index">
-      <ng-template mat-tab-label
-        >{{ tab.title }}
-        <i class="material-icons" (click)="removeTab(tabIndex)">
-          close
-        </i>
+      <ng-template mat-tab-label>
+        <mat-icon *ngIf="tab.tabData.defaultLocale">turned_in_not</mat-icon> {{ tab.title }} <i class="material-icons" (click)="removeTab(tabIndex)" *ngIf="!tab.tabData.defaultLocale">close</i>
       </ng-template>
-
       <div>
         <app-tab-content [tab]="tab"></app-tab-content>
       </div>

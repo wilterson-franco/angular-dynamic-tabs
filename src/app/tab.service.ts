@@ -1,15 +1,14 @@
-import { Injectable } from "@angular/core";
-import { Tab } from "./tab.model";
-import { Comp1Component } from "./components/comp1.component";
-import { Comp2Component } from "./components/comp2.component";
-import { BehaviorSubject } from "rxjs";
-import {Locale} from "./module/locale";
+import {Injectable} from "@angular/core";
+import {Tab} from "./model/tab.model";
+import {BehaviorSubject} from "rxjs";
+import {Locale} from "./model/locale";
+import {LocaleComponent} from "./components/locale/locale.component";
 
 @Injectable()
 export class TabService {
 
   public tabs: Tab[] = [
-    new Tab(Comp1Component, "English", new Locale('English', true, 'Merchant description in English', true))
+    new Tab(LocaleComponent, "English", new Locale('English', true, 'Merchant description in English', true))
   ];
 
   public tabSub = new BehaviorSubject<Tab[]>(this.tabs);
@@ -26,6 +25,9 @@ export class TabService {
     for (let i = 0; i < this.tabs.length; i++) {
       if (this.tabs[i].active === true) {
         this.tabs[i].active = false;
+      }
+      if (tab.tabData.defaultLocale === true && this.tabs[i].tabData.defaultLocale === true) {
+        this.tabs[i].tabData.defaultLocale = false;
       }
     }
     tab.id = this.tabs.length + 1;
