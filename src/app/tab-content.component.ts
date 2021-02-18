@@ -25,6 +25,6 @@ export class TabContentComponent implements OnInit {
     const componentFactory = this.componentFactoryResolver.resolveComponentFactory(tab.component);
     const viewContainerRef = this.contentContainer.viewContainerRef;
     const componentRef = viewContainerRef.createComponent(componentFactory);
-    (componentRef.instance as SkeletonComponent).data = tab.tabData;
+    (componentRef.instance as SkeletonComponent).locale = tab.tabData;
   }
 }
