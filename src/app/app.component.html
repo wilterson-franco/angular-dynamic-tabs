@@ -13,6 +13,9 @@
       </ng-template>
       <div>
         <app-tab-content [tab]="tab"></app-tab-content>
+
+        {{ tab.tabData | json }}
+
       </div>
     </mat-tab>
 

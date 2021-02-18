@@ -36,7 +36,7 @@ export class AppComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((locale: Locale) => {
       if (locale !== null && locale !== undefined) {
-        const newLocale = new Locale(locale.language, locale.defaultLocale, locale.description, true);
+        const newLocale = new Locale(locale.language, locale.defaultLocale, locale.description);
         this.tabService.addTab(new Tab(LocaleComponent, newLocale.language, newLocale));
       }
     })

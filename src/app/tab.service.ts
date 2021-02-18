@@ -8,7 +8,7 @@ import {LocaleComponent} from "./components/locale/locale.component";
 export class TabService {
 
   public tabs: Tab[] = [
-    new Tab(LocaleComponent, "English", new Locale('English', true, 'Merchant description in English', true))
+    new Tab(LocaleComponent, "English", new Locale('English', true, 'something'))
   ];
 
   public tabSub = new BehaviorSubject<Tab[]>(this.tabs);

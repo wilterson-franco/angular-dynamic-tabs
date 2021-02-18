@@ -16,7 +16,7 @@ export class NewLocationDialogComponent implements OnInit {
   constructor(private dialogRef: MatDialogRef<NewLocationDialogComponent>) { }
 
   ngOnInit() {
-    this.locale = new Locale('Portuguese', false, null, false);
+    this.locale = new Locale('Portuguese', false, null);
   }
 
   save() {
