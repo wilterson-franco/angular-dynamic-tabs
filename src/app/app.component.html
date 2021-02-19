@@ -1,6 +1,5 @@
 <div class="container-fluid">
   <h1>Demo Application</h1>
-  <button mat-stroked-button (click)="addNewTab()">Add new locale <mat-icon>language</mat-icon></button>
 
   <mat-tab-group
     class="main-tab-group mt-2"
@@ -17,6 +16,13 @@
         {{ tab.tabData | json }}
 
       </div>
+    </mat-tab>
+    <mat-tab disabled>
+      <ng-template mat-tab-label>
+        <button mat-icon-button (click)="addNewTab()">
+          <mat-icon>add</mat-icon>
+        </button>
+      </ng-template>
     </mat-tab>
 
   </mat-tab-group>
