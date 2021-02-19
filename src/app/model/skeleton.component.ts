@@ -1,3 +1,3 @@
 export interface SkeletonComponent {
-  locale: any;
+  data: any;
 }

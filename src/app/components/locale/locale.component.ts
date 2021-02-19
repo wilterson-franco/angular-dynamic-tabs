@@ -7,7 +7,7 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class LocaleComponent implements OnInit {
 
-  @Input() locale;
+  @Input() data;
 
   constructor() { }
 
