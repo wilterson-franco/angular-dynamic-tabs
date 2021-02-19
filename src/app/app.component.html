@@ -1,6 +1,7 @@
 <div class="container-fluid">
   <h1>Demo Application</h1>
 
+<!-- LOCALE TABS -->
   <mat-tab-group
     class="main-tab-group mt-2"
     [selectedIndex]="selectedTab"
@@ -8,7 +9,7 @@
 
     <mat-tab *ngFor="let tab of tabs; let tabIndex = index">
       <ng-template mat-tab-label>
-        <mat-icon *ngIf="tab.tabData.defaultLocale">turned_in_not</mat-icon> {{ tab.title }} <i class="material-icons" (click)="removeTab(tabIndex)" *ngIf="!tab.tabData.defaultLocale">close</i>
+        <mat-icon *ngIf="tab.tabData.defaultLocale">turned_in_not</mat-icon> {{ tab.title }} <i class="material-icons" (click)="removeLocaleTab(tabIndex)" *ngIf="!tab.tabData.defaultLocale">close</i>
       </ng-template>
       <div>
         <app-tab-content [tab]="tab"></app-tab-content>
@@ -19,12 +20,14 @@
     </mat-tab>
     <mat-tab disabled>
       <ng-template mat-tab-label>
-        <button mat-icon-button (click)="addNewTab()">
+        <button mat-icon-button (click)="addLocaleTab()">
           <mat-icon>add</mat-icon>
         </button>
       </ng-template>
     </mat-tab>
 
   </mat-tab-group>
+
+<!-- LOCATION TABS -->
 
 </div>

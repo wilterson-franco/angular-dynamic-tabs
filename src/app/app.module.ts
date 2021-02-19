@@ -6,7 +6,7 @@ import {AppComponent} from "./app.component";
 import {TabContentComponent} from "./tab-content.component";
 import {ContentContainerDirective} from "./content-container.directive";
 import {TabService} from "./tab.service";
-import {NewLocationDialogComponent} from './components/new-location-dialog/new-location-dialog.component';
+import {LocaleDialogComponent} from './components/locale/locale-dialog.component';
 import {FormsModule} from "@angular/forms";
 import {MaterialModule} from "./shared/material.module";
 import { LocaleComponent } from './components/locale/locale.component';
@@ -16,7 +16,7 @@ import { LocaleComponent } from './components/locale/locale.component';
     AppComponent,
     TabContentComponent,
     ContentContainerDirective,
-    NewLocationDialogComponent,
+    LocaleDialogComponent,
     LocaleComponent
   ],
   imports: [
@@ -27,7 +27,7 @@ import { LocaleComponent } from './components/locale/locale.component';
   ],
   providers: [TabService],
   bootstrap: [AppComponent],
-  entryComponents: [NewLocationDialogComponent, LocaleComponent]
+  entryComponents: [LocaleDialogComponent, LocaleComponent]
 })
 export class AppModule {
 }

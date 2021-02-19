@@ -1,9 +1,9 @@
 import {Component, OnInit} from "@angular/core";
 import {TabService} from "./tab.service";
-import {Tab} from "./model/tab.model";
+import {Tab} from "./model/model";
 import {MatDialog} from "@angular/material/dialog";
-import {NewLocationDialogComponent} from "./components/new-location-dialog/new-location-dialog.component";
-import {Locale} from "./model/locale";
+import {LocaleDialogComponent} from "./components/locale/locale-dialog.component";
+import {Locale} from "./model/model";
 import {LocaleComponent} from "./components/locale/locale.component";
 
 @Component({
@@ -29,8 +29,8 @@ export class AppComponent implements OnInit {
     console.log("tab changed");
   }
 
-  addNewTab() {
-    let dialogRef = this.dialog.open(NewLocationDialogComponent, {
+  addLocaleTab() {
+    let dialogRef = this.dialog.open(LocaleDialogComponent, {
       width: '500px'
     });
 
@@ -42,7 +42,7 @@ export class AppComponent implements OnInit {
     })
   }
 
-  removeTab(index: number): void {
+  removeLocaleTab(index: number): void {
     this.tabService.removeTab(index);
   }
 }

@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
-import {Tab} from "./model/tab.model";
+import {Tab} from "./model/model";
 import {BehaviorSubject} from "rxjs";
-import {Locale} from "./model/locale";
+import {Locale} from "./model/model";
 import {LocaleComponent} from "./components/locale/locale.component";
 
 @Injectable()
