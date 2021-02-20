@@ -71,6 +71,9 @@ export class AppComponent implements OnInit {
 
     const instance = dialogRef.componentInstance;
     instance.title = "Edit Location [ " + localeTab.tabData.language.toUpperCase() + " ]";
+    instance.language = localeTab.tabData.language;
+    instance.defaultLocale = localeTab.tabData.defaultLocale;
+    instance.description = localeTab.tabData.description;
 
     dialogRef.afterClosed().subscribe((updatedLocale: Locale) => {
       if (updatedLocale !== null && updatedLocale !== undefined) {
@@ -110,10 +113,18 @@ export class AppComponent implements OnInit {
 
     const instance = dialogRef.componentInstance;
     instance.title = "Edit Location [ " + locationTab.tabData.country.toUpperCase() + " ]";
+    instance.country = locationTab.tabData.country;
+    instance.region = locationTab.tabData.region;
+    instance.categoryCode = locationTab.tabData.categoryCode;
+    instance.email = locationTab.tabData.email;
+    instance.defaultLocation = locationTab.tabData.defaultLocation;
+
+    // instance.location = new Location(locationTab.tabData.country, locationTab.tabData.defaultLocation);
 
     dialogRef.afterClosed().subscribe((updatedLocation: Location) => {
       if (updatedLocation !== null && updatedLocation !== undefined) {
         locationTab.title = updatedLocation.country;
+        locationTab.tabData.country = updatedLocation.country;
         locationTab.tabData.region = updatedLocation.region;
         locationTab.tabData.categoryCode = updatedLocation.categoryCode;
         locationTab.tabData.email = updatedLocation.email;

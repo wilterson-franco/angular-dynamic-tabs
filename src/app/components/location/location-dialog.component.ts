@@ -11,6 +11,12 @@ export class LocationDialogComponent implements OnInit {
 
   title: string;
 
+  country: Country;
+  region: CountryRegion;
+  categoryCode: string;
+  email: string;
+  defaultLocation: boolean;
+
   countries: string[];
   regions: string[];
   location: Location;
@@ -18,7 +24,11 @@ export class LocationDialogComponent implements OnInit {
   constructor(private dialogRef: MatDialogRef<LocationDialogComponent>) { }
 
   ngOnInit() {
-    this.location = new Location(Country.CAN, false);
+    this.location = new Location(this.country, this.defaultLocation);
+    this.location.email = this.email;
+    this.location.categoryCode = this.categoryCode;
+    this.location.region = this.region;
+
     this.countries = Object.keys(Country).map(key => Country[key]).filter(value => typeof value === 'string') as string[];
     this.regions = Object.keys(CountryRegion).map(key => CountryRegion[key]).filter(value => typeof value === 'string') as string[];
   }
