@@ -1,8 +1,9 @@
 <h2 mat-dialog-title>{{ title }}</h2>
+
 <mat-dialog-content>
   <div class="example-container">
     <mat-form-field appearance="fill">
-      <mat-label>Select</mat-label>
+      <mat-label>Select a language</mat-label>
       <mat-select [(ngModel)]="locale.language">
         <mat-option *ngFor="let language of languages" [value]="language">{{ language }}</mat-option>
       </mat-select>
@@ -16,6 +17,6 @@
 </mat-dialog-content>
 
 <mat-dialog-actions>
-  <button mat-button color="primary" (click) = "save()"><mat-icon>save</mat-icon>Save</button>
+  <button mat-button color="primary" (click) = "save()" [disabled]="locale.language === undefined"><mat-icon>save</mat-icon>Save</button>
   <button mat-button color="primary" (click) = "dismiss()"><mat-icon>cancel</mat-icon>Cancel</button>
 </mat-dialog-actions>

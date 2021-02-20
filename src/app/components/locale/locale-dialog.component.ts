@@ -27,8 +27,7 @@ export class LocaleDialogComponent implements OnInit {
   }
 
   filterLanguages(allLanguages: string[]) {
-    return allLanguages
-      .filter((lang: string) => this.languagesExcluded.indexOf(lang) < 0);
+    return allLanguages.filter((lang: string) => this.languagesExcluded.indexOf(lang) < 0);
   }
 
   save() {

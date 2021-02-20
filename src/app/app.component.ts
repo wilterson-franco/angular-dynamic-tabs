@@ -132,8 +132,6 @@ export class AppComponent implements OnInit {
     instance.email = locationTab.tabData.email;
     instance.defaultLocation = locationTab.tabData.defaultLocation;
 
-    // instance.location = new Location(locationTab.tabData.country, locationTab.tabData.defaultLocation);
-
     dialogRef.afterClosed().subscribe((updatedLocation: Location) => {
       if (updatedLocation !== null && updatedLocation !== undefined) {
         locationTab.title = updatedLocation.country;

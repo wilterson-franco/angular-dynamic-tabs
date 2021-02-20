@@ -21,7 +21,7 @@ export class LocationDialogComponent implements OnInit {
   regions: string[];
   location: Location;
 
-  countriesExcluded: string[];
+  countriesExcluded = new Array<string>();
 
   constructor(private dialogRef: MatDialogRef<LocationDialogComponent>) { }
 
