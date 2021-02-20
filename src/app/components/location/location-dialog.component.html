@@ -21,7 +21,7 @@
       <mat-label>Email</mat-label>
       <textarea matInput [(ngModel)]="location.email"></textarea>
     </mat-form-field>
-    <mat-checkbox [(ngModel)]="location.defaultLocation">is {{location.country}} the default location?</mat-checkbox>
+    <mat-checkbox [(ngModel)]="location.defaultLocation" *ngIf="!defaultLocation && location.country !== undefined">Make {{location.country}} default</mat-checkbox>
   </div>
 </mat-dialog-content>
 
