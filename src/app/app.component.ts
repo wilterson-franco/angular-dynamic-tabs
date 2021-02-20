@@ -36,14 +36,6 @@ export class AppComponent implements OnInit {
     });
   }
 
-  localeTabChanged(event) {
-    console.log("Locale tab changed");
-  }
-
-  locationTabChanged(event) {
-    console.log("Location tab changed");
-  }
-
   addLocaleTab() {
     let dialogRef = this.dialog.open(LocaleDialogComponent, {
       width: '500px'
@@ -51,6 +43,11 @@ export class AppComponent implements OnInit {
 
     const instance = dialogRef.componentInstance;
     instance.title = "New Locale";
+    instance.language = undefined;
+    instance.defaultLocale = undefined;
+    instance.description = undefined;
+
+    instance.languagesExcluded = this.localeTabs.map((tab: Tab) => tab.tabData.language);
 
     dialogRef.afterClosed().subscribe((locale: Locale) => {
       if (locale !== null && locale !== undefined) {
@@ -86,6 +83,11 @@ export class AppComponent implements OnInit {
     })
 
   }
+
+  localeTabChanged(event) {
+    console.log("Locale tab changed");
+  }
+
   addLocationTab() {
     let dialogRef = this.dialog.open(LocationDialogComponent, {
       width: '500px'
@@ -93,6 +95,13 @@ export class AppComponent implements OnInit {
 
     const instance = dialogRef.componentInstance;
     instance.title = "New Location";
+    instance.country = undefined;
+    instance.region = undefined;
+    instance.categoryCode = undefined;
+    instance.email = undefined;
+    instance.defaultLocation = undefined;
+
+    instance.countriesExcluded = this.locationTabs.map((tab: Tab) => tab.tabData.country);
 
     dialogRef.afterClosed().subscribe((location: Location) => {
       if (location !== null && location !== undefined) {
@@ -132,6 +141,10 @@ export class AppComponent implements OnInit {
         this.locationTabService.updateTab(index, updatedLocation);
       }
     })
+  }
+
+  locationTabChanged(event) {
+    console.log("Location tab changed");
   }
 
 }

@@ -14,13 +14,21 @@ export class LocaleDialogComponent implements OnInit {
   defaultLocale: boolean;
   description: string;
 
-  languages = Object.keys(Language).map(key => Language[key]).filter(value => typeof value === 'string') as string[];
   locale: Locale;
+  languages: string[];
+
+  languagesExcluded = new Array<string>();
 
   constructor(private dialogRef: MatDialogRef<LocaleDialogComponent>) { }
 
   ngOnInit() {
+    this.languages = this.filterLanguages(Object.keys(Language).map(key => Language[key]).filter(value => typeof value === 'string') as string[]);
     this.locale = new Locale(this.language, this.defaultLocale, this.description);
+  }
+
+  filterLanguages(allLanguages: string[]) {
+    return allLanguages
+      .filter((lang: string) => this.languagesExcluded.indexOf(lang) < 0);
   }
 
   save() {
