@@ -21,7 +21,7 @@
 
       </div>
     </mat-tab>
-    <mat-tab disabled>
+    <mat-tab disabled *ngIf="showAddLocale">
       <ng-template mat-tab-label>
         <button mat-icon-button (click)="addLocaleTab()">
           <mat-icon>add</mat-icon>
@@ -52,7 +52,8 @@
 
       </div>
     </mat-tab>
-    <mat-tab disabled>
+
+    <mat-tab disabled *ngIf="showAddLocation">
       <ng-template mat-tab-label>
         <button mat-icon-button (click)="addLocationTab()">
           <mat-icon>add</mat-icon>

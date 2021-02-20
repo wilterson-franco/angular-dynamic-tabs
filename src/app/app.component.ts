@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {LocaleTabService} from "./services/locale-tab.service";
-import {Country, Locale, Location, Tab} from "./model/model";
+import {Country, Language, Locale, Location, Tab} from "./model/model";
 import {MatDialog} from "@angular/material/dialog";
 import {LocaleDialogComponent} from "./components/locale/locale-dialog.component";
 import {LocaleComponent} from "./components/locale/locale.component";
@@ -14,11 +14,15 @@ import {LocationTabService} from "./services/location-tab.service";
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent implements OnInit {
+
   localeTabs = new Array<Tab>();
   localeSelectedTab: number;
 
   locationTabs = new Array<Tab>();
   locationSelectedTab: number;
+
+  showAddLocale: boolean = true;
+  showAddLocation: boolean = true;
 
   constructor(private localeTabService: LocaleTabService,
               private locationTabService: LocationTabService,
@@ -26,11 +30,11 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.localeTabService.tabSub.subscribe((tabs : Tab[]) => {
+    this.localeTabService.tabSub.subscribe((tabs: Tab[]) => {
       this.localeTabs = tabs;
       this.localeSelectedTab = tabs.findIndex(tab => tab.active);
     });
-    this.locationTabService.tabSub.subscribe((tabs : Tab[]) => {
+    this.locationTabService.tabSub.subscribe((tabs: Tab[]) => {
       this.locationTabs = tabs;
       this.locationSelectedTab = tabs.findIndex(tab => tab.active);
     });
@@ -85,7 +89,7 @@ export class AppComponent implements OnInit {
   }
 
   localeTabChanged(event) {
-    console.log("Locale tab changed");
+    this.showAddLocale = Object.keys(Language).length !== this.localeTabService.getNumberOfOpenedTabs()
   }
 
   addLocationTab() {
@@ -144,7 +148,7 @@ export class AppComponent implements OnInit {
   }
 
   locationTabChanged(event) {
-    console.log("Location tab changed");
+    this.showAddLocation = Object.keys(Country).length !== this.locationTabService.getNumberOfOpenedTabs()
   }
 
 }

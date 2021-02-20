@@ -46,4 +46,8 @@ export class LocaleTabService {
     this.tabs[index].tabData.defaultLocale = locale.defaultLocale;
     this.tabSub.next(this.tabs);
   }
+
+  public getNumberOfOpenedTabs() {
+    return this.tabs.length;
+  }
 }

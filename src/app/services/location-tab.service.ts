@@ -49,4 +49,7 @@ export class LocationTabService {
     this.tabSub.next(this.tabs);
   }
 
+  public getNumberOfOpenedTabs() {
+    return this.tabs.length;
+  }
 }
