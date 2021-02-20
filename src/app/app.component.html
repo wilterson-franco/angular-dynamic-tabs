@@ -4,17 +4,20 @@
 <!-- LOCALE TABS -->
   <mat-tab-group
     class="main-tab-group mt-2"
-    [selectedIndex]="selectedTab"
-    (selectedTabChange)="tabChanged($event)">
+    [selectedIndex]="localeSelectedTab"
+    (selectedTabChange)="localeTabChanged($event)">
 
-    <mat-tab *ngFor="let tab of tabs; let tabIndex = index">
+    <mat-tab *ngFor="let localeTab of localeTabs; let tabIndex = index">
       <ng-template mat-tab-label>
-        <mat-icon *ngIf="tab.tabData.defaultLocale">turned_in_not</mat-icon> {{ tab.title }} <i class="material-icons" (click)="removeLocaleTab(tabIndex)" *ngIf="!tab.tabData.defaultLocale">close</i>
+        <mat-icon *ngIf="localeTab.tabData.defaultLocale">turned_in_not</mat-icon> {{ localeTab.title | uppercase }}
+        <i class="material-icons" (click)="editLocaleTab(tabIndex, localeTab)">&nbsp;&nbsp;&nbsp;&nbsp;edit</i>
+        <i class="material-icons" (click)="removeLocaleTab(tabIndex)" *ngIf="!localeTab.tabData.defaultLocale">close</i>
+
       </ng-template>
       <div>
-        <app-tab-content [tab]="tab"></app-tab-content>
+        <app-tab-content [tab]="localeTab"></app-tab-content>
 
-        {{ tab.tabData | json }}
+        {{ localeTab.tabData | json }}
 
       </div>
     </mat-tab>
@@ -28,6 +31,35 @@
 
   </mat-tab-group>
 
+  <br><br><br><br>
+
 <!-- LOCATION TABS -->
+  <mat-tab-group
+    class="main-tab-group mt-2"
+    [selectedIndex]="locationSelectedTab"
+    (selectedTabChange)="locationTabChanged($event)">
+
+    <mat-tab *ngFor="let locationTab of locationTabs; let tabIndex = index">
+      <ng-template mat-tab-label>
+        <mat-icon *ngIf="locationTab.tabData.defaultLocation">turned_in_not</mat-icon> {{ locationTab.title | uppercase }}
+        <i class="material-icons" (click)="editLocationTab(tabIndex, locationTab)">&nbsp;&nbsp;&nbsp;&nbsp;edit</i>
+        <i class="material-icons" (click)="removeLocationTab(tabIndex)" *ngIf="!locationTab.tabData.defaultLocation">close</i>
+      </ng-template>
+      <div>
+        <app-tab-content [tab]="locationTab"></app-tab-content>
+
+        {{ locationTab.tabData | json }}
+
+      </div>
+    </mat-tab>
+    <mat-tab disabled>
+      <ng-template mat-tab-label>
+        <button mat-icon-button (click)="addLocationTab()">
+          <mat-icon>add</mat-icon>
+        </button>
+      </ng-template>
+    </mat-tab>
+
+  </mat-tab-group>
 
 </div>

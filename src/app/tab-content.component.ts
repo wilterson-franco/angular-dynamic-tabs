@@ -26,5 +26,6 @@ export class TabContentComponent implements OnInit {
     const viewContainerRef = this.contentContainer.viewContainerRef;
     const componentRef = viewContainerRef.createComponent(componentFactory);
     (componentRef.instance as SkeletonComponent).data = tab.tabData;
+    (componentRef.instance as SkeletonComponent).readonly = true;
   }
 }

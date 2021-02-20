@@ -1,14 +1,13 @@
 import {Injectable} from "@angular/core";
-import {Tab} from "./model/model";
+import {Language, Locale, Tab} from "../model/model";
 import {BehaviorSubject} from "rxjs";
-import {Locale} from "./model/model";
-import {LocaleComponent} from "./components/locale/locale.component";
+import {LocaleComponent} from "../components/locale/locale.component";
 
 @Injectable()
-export class TabService {
+export class LocaleTabService {
 
   public tabs: Tab[] = [
-    new Tab(LocaleComponent, "English", new Locale('English', true, 'something'))
+    new Tab(LocaleComponent, Language.ENGLISH, new Locale(Language.ENGLISH, true, null))
   ];
 
   public tabSub = new BehaviorSubject<Tab[]>(this.tabs);
@@ -33,6 +32,18 @@ export class TabService {
     tab.id = this.tabs.length + 1;
     tab.active = true;
     this.tabs.push(tab);
+    this.tabSub.next(this.tabs);
+  }
+
+  public updateTab(index: number, locale: Locale) {
+    if (locale.defaultLocale === true) {
+      for (let i = 0; i < this.tabs.length; i++) {
+        this.tabs[i].tabData.defaultLocale = false;
+      }
+    }
+    this.tabs[index].tabData.language = locale.language;
+    this.tabs[index].tabData.description = locale.description;
+    this.tabs[index].tabData.defaultLocale = locale.defaultLocale;
     this.tabSub.next(this.tabs);
   }
 }

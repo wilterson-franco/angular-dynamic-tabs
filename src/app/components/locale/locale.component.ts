@@ -8,6 +8,7 @@ import {Component, Input, OnInit} from '@angular/core';
 export class LocaleComponent implements OnInit {
 
   @Input() data;
+  @Input() readonly: boolean;
 
   constructor() { }
 
