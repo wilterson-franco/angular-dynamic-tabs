@@ -56,9 +56,12 @@ export class Locale {
 
 export class Location {
 
-  constructor(country: string, defaultLocation: boolean) {
+  constructor(country: string, region: string, defaultLocation: boolean, categoryCode: string, email: string) {
     this.country = country;
+    this.region = region;
     this.defaultLocation = defaultLocation;
+    this.categoryCode = categoryCode;
+    this.email = email;
   }
 
   country: string;

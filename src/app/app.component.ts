@@ -47,11 +47,8 @@ export class AppComponent implements OnInit {
 
     const instance = dialogRef.componentInstance;
     instance.title = "New Locale";
-    instance.language = undefined;
-    instance.defaultLocale = undefined;
-    instance.description = undefined;
-
     instance.languagesExcluded = this.localeTabs.map((tab: Tab) => tab.tabData.language);
+    instance.locale = new Locale(undefined, undefined, undefined);
 
     dialogRef.afterClosed().subscribe((locale: Locale) => {
       if (locale !== null && locale !== undefined) {
@@ -72,9 +69,7 @@ export class AppComponent implements OnInit {
 
     const instance = dialogRef.componentInstance;
     instance.title = "Edit Location [ " + localeTab.tabData.language.toUpperCase() + " ]";
-    instance.language = localeTab.tabData.language;
-    instance.defaultLocale = localeTab.tabData.defaultLocale;
-    instance.description = localeTab.tabData.description;
+    instance.locale = new Locale(localeTab.tabData.language, localeTab.tabData.defaultLocale, localeTab.tabData.description);
 
     dialogRef.afterClosed().subscribe((updatedLocale: Locale) => {
       if (updatedLocale !== null && updatedLocale !== undefined) {
@@ -85,7 +80,6 @@ export class AppComponent implements OnInit {
         this.localeTabService.updateTab(index, updatedLocale);
       }
     })
-
   }
 
   localeTabChanged(event) {
@@ -99,13 +93,13 @@ export class AppComponent implements OnInit {
 
     const instance = dialogRef.componentInstance;
     instance.title = "New Location";
-    instance.country = undefined;
-    instance.region = undefined;
-    instance.categoryCode = undefined;
-    instance.email = undefined;
-    instance.defaultLocation = undefined;
-
     instance.countriesExcluded = this.locationTabs.map((tab: Tab) => tab.tabData.country);
+    instance.location = new Location(
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      undefined);
 
     dialogRef.afterClosed().subscribe((location: Location) => {
       if (location !== null && location !== undefined) {
@@ -126,11 +120,12 @@ export class AppComponent implements OnInit {
 
     const instance = dialogRef.componentInstance;
     instance.title = "Edit Location [ " + locationTab.tabData.country.toUpperCase() + " ]";
-    instance.country = locationTab.tabData.country;
-    instance.region = locationTab.tabData.region;
-    instance.categoryCode = locationTab.tabData.categoryCode;
-    instance.email = locationTab.tabData.email;
-    instance.defaultLocation = locationTab.tabData.defaultLocation;
+    instance.location = new Location(
+      locationTab.tabData.country,
+      locationTab.tabData.region,
+      locationTab.tabData.defaultLocation,
+      locationTab.tabData.categoryCode,
+      locationTab.tabData.email);
 
     dialogRef.afterClosed().subscribe((updatedLocation: Location) => {
       if (updatedLocation !== null && updatedLocation !== undefined) {

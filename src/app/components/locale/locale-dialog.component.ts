@@ -10,20 +10,16 @@ import {Locale, Language} from "../../model/model";
 export class LocaleDialogComponent implements OnInit {
 
   title: string;
-  language: string;
-  defaultLocale: boolean;
-  description: string;
-
   locale: Locale;
   languages: string[];
-
   languagesExcluded = new Array<string>();
+  defaultLocale: boolean;
 
   constructor(private dialogRef: MatDialogRef<LocaleDialogComponent>) { }
 
   ngOnInit() {
+    this.defaultLocale = this.locale.defaultLocale;
     this.languages = this.filterLanguages(Object.keys(Language).map(key => Language[key]).filter(value => typeof value === 'string') as string[]);
-    this.locale = new Locale(this.language, this.defaultLocale, this.description);
   }
 
   filterLanguages(allLanguages: string[]) {

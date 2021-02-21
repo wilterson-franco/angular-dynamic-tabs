@@ -7,7 +7,7 @@ import {LocationComponent} from "../components/location/location.component";
 export class LocationTabService {
 
   public tabs: Tab[] = [
-    new Tab(LocationComponent, Country.CAN, new Location(Country.CAN, true))
+    new Tab(LocationComponent, Country.CAN, new Location(Country.CAN, undefined, true, undefined, undefined))
   ];
 
   public tabSub = new BehaviorSubject<Tab[]>(this.tabs);
