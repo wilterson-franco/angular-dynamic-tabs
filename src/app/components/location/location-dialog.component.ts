@@ -10,7 +10,6 @@ import {Country, CountryRegion, Location} from "../../model/model";
 export class LocationDialogComponent implements OnInit {
 
   title: string;
-
   countries: string[];
   regions: string[];
   location: Location;

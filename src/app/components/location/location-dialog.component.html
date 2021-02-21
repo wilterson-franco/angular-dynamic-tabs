@@ -1,31 +1,40 @@
 <h2 mat-dialog-title>{{ title }}</h2>
 <mat-dialog-content>
-  <div class="example-container">
-    <mat-form-field appearance="fill">
-      <mat-label>Select a country</mat-label>
-      <mat-select [(ngModel)]="location.country">
-        <mat-option *ngFor="let country of countries" [value]="country">{{ country }}</mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-      <mat-label>Select</mat-label>
-      <mat-select [(ngModel)]="location.region">
-        <mat-option *ngFor="let region of regions" [value]="region">{{ region }}</mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-      <mat-label>Category code</mat-label>
-      <textarea matInput [(ngModel)]="location.categoryCode"></textarea>
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-      <mat-label>Email</mat-label>
-      <textarea matInput [(ngModel)]="location.email"></textarea>
-    </mat-form-field>
-    <mat-checkbox [(ngModel)]="location.defaultLocation" *ngIf="!defaultLocation && location.country !== undefined">Make {{location.country}} default</mat-checkbox>
-  </div>
+
+  <form #form="ngForm">
+
+    <div class="example-container">
+      <mat-form-field appearance="fill">
+        <mat-label>Select a country</mat-label>
+        <mat-select name="country" [(ngModel)]="location.country" #countryField="ngModel">
+          <mat-option *ngFor="let country of countries" [value]="country">{{ country }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Select</mat-label>
+        <mat-select name="region" [(ngModel)]="location.region" #regionField="ngModel">
+          <mat-option *ngFor="let region of regions" [value]="region">{{ region }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Category code</mat-label>
+        <textarea name="categoryCode" matInput [(ngModel)]="location.categoryCode" #categoryCodeField="ngModel"></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <textarea name="email" matInput [(ngModel)]="location.email" #emailField="ngModel"></textarea>
+      </mat-form-field>
+      <mat-checkbox name="defaultLocation" [(ngModel)]="location.defaultLocation" *ngIf="!defaultLocation && location.country !== undefined" #defaultLocationField="ngModel">Make {{location.country}} default</mat-checkbox>
+    </div>
+
+  </form>
+
 </mat-dialog-content>
 
 <mat-dialog-actions>
-  <button mat-button color="primary" (click) = "save()" [disabled]="location.country === undefined"><mat-icon>save</mat-icon>Save</button>
+  <button mat-button color="primary"
+          (click) = "save()"
+          [disabled]="!form.dirty || !countryField.value || !regionField.value || !categoryCodeField.value || !emailField.value"
+  ><mat-icon>save</mat-icon>Save</button>
   <button mat-button color="primary" (click) = "dismiss()"><mat-icon>cancel</mat-icon>Cancel</button>
 </mat-dialog-actions>

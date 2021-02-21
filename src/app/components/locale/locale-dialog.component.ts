@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatDialogRef} from "@angular/material/dialog";
-import {Locale, Language} from "../../model/model";
+import {Language, Locale} from "../../model/model";
 
 @Component({
   selector: 'app-new-location-dialog',
@@ -15,7 +15,8 @@ export class LocaleDialogComponent implements OnInit {
   languagesExcluded = new Array<string>();
   defaultLocale: boolean;
 
-  constructor(private dialogRef: MatDialogRef<LocaleDialogComponent>) { }
+  constructor(private dialogRef: MatDialogRef<LocaleDialogComponent>) {
+  }
 
   ngOnInit() {
     this.defaultLocale = this.locale.defaultLocale;
